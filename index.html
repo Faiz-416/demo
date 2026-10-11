@@ -13,7 +13,11 @@
             --primary: #8b5cf6;
             --primary-hover: #7c3aed;
             --secondary: #1e293b;
+            --secondary-soft: #111827;
             --accent: #38bdf8;
+            --muted: #94a3b8;
+            --card: rgba(15, 23, 42, 0.5);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -23,6 +27,10 @@
             font-family: 'Inter', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -30,7 +38,10 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+        a {
+            text-decoration: none;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
@@ -55,13 +66,17 @@
             letter-spacing: -0.5px;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-links a {
             color: #cbd5e1;
-            text-decoration: none;
-            margin-left: 2.5rem;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
@@ -71,15 +86,15 @@
         .btn-primary {
             background: var(--primary);
             color: white;
-            padding: 0.6rem 1.25rem;
+            padding: 0.7rem 1.25rem;
             border-radius: 8px;
-            text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
+            display: inline-block;
         }
 
         .btn-primary:hover {
@@ -88,7 +103,28 @@
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.23);
         }
 
-        /* Hero Section */
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            color: white;
+            padding: 0.8rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary.large {
+            padding: 0.8rem 1.75rem;
+            font-size: 1.05rem;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -96,7 +132,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 5%;
+            padding: 8rem 5% 4rem;
             position: relative;
         }
 
@@ -132,7 +168,7 @@
 
         .hero p {
             font-size: 1.25rem;
-            color: #94a3b8;
+            color: var(--muted);
             max-width: 600px;
             margin-bottom: 2.5rem;
         }
@@ -144,43 +180,9 @@
             justify-content: center;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.03);
-            color: white;
-            padding: 0.8rem 1.75rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-primary.large {
-            padding: 0.8rem 1.75rem;
-            font-size: 1.05rem;
-        }
-
-        /* Features Section */
-        .features {
+        .section {
             padding: 6rem 5%;
-            background: var(--secondary);
             position: relative;
-        }
-        
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
         }
 
         .section-title {
@@ -191,9 +193,23 @@
             letter-spacing: -0.5px;
         }
 
+        .features {
+            background: var(--secondary);
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -208,7 +224,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .feature-card::before {
             content: '';
             position: absolute;
@@ -226,7 +242,7 @@
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
             border-color: rgba(139, 92, 246, 0.2);
         }
-        
+
         .feature-card:hover::before {
             opacity: 1;
         }
@@ -252,12 +268,102 @@
         }
 
         .feature-card p {
-            color: #94a3b8;
+            color: var(--muted);
             font-size: 1rem;
             line-height: 1.6;
         }
 
-        /* Footer */
+        .pricing {
+            background: var(--bg-color);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 20px 45px -25px rgba(56, 189, 248, 0.5);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--muted);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--muted);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            color: var(--muted);
+        }
+
+        .pricing-card li {
+            padding: 0.5rem 0;
+        }
+
+        .docs {
+            background: var(--secondary);
+        }
+
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .doc-card {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .doc-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .doc-card p {
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .doc-link {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         footer {
             padding: 3rem 5%;
             text-align: center;
@@ -265,19 +371,24 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: #64748b;
         }
-        
-        /* Responsive */
+
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* In a real app, this would be a hamburger menu */
+                display: none;
             }
+
             .hero-buttons {
                 flex-direction: column;
                 width: 100%;
                 max-width: 300px;
             }
+
             .hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
         }
     </style>
@@ -290,7 +401,7 @@
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
             <a href="#docs">Documentation</a>
-            <a href="#" class="btn-primary">Sign In</a>
+            <a href="#pricing" class="btn-primary">Sign In</a>
         </div>
     </nav>
 
@@ -299,12 +410,12 @@
             <h1>Ship faster with our <span>intelligent</span> platform.</h1>
             <p>Automate your workflow, connect your favorite tools, and scale your business without the friction. Built for modern engineering teams.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary large">Start Free Trial</a>
-                <a href="#" class="btn-secondary">Book a Demo</a>
+                <a href="#pricing" class="btn-primary large">Start Free Trial</a>
+                <a href="#docs" class="btn-secondary">Book a Demo</a>
             </div>
         </section>
 
-        <section class="features" id="features">
+        <section class="section features" id="features">
             <h2 class="section-title">Everything you need to scale</h2>
             <div class="features-grid">
                 <div class="feature-card">
@@ -321,6 +432,67 @@
                     <div class="feature-icon">📈</div>
                     <h3>Real-time Analytics</h3>
                     <p>Make data-driven decisions with our powerful dashboard. Monitor performance and user engagement in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section pricing" id="pricing">
+            <h2 class="section-title">Simple pricing for growing teams</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$29 <span>/ month</span></div>
+                    <ul>
+                        <li>Up to 3 projects</li>
+                        <li>Basic automation</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="btn-secondary">Choose Starter</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Growth</h3>
+                    <div class="price">$79 <span>/ month</span></div>
+                    <ul>
+                        <li>Unlimited projects</li>
+                        <li>Advanced workflows</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Choose Growth</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>Custom SLAs</li>
+                        <li>Dedicated onboarding</li>
+                        <li>Security reviews</li>
+                    </ul>
+                    <a href="#" class="btn-secondary">Talk to Sales</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section docs" id="docs">
+            <h2 class="section-title">Documentation & resources</h2>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <h3>Getting Started</h3>
+                    <p>Learn how to connect your workspace, invite teammates, and automate your first workflow.</p>
+                    <a href="#" class="doc-link">Read guide →</a>
+                </div>
+
+                <div class="doc-card">
+                    <h3>API Reference</h3>
+                    <p>Explore our endpoints, payloads, and authentication methods for custom integrations.</p>
+                    <a href="#" class="doc-link">View docs →</a>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Best Practices</h3>
+                    <p>Build reliable automations with configuration patterns, monitoring, and scaling tips.</p>
+                    <a href="#" class="doc-link">See examples →</a>
                 </div>
             </div>
         </section>
